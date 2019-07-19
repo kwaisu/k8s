@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+   name: frontend
+spec:
+   replicas: 5
+   template:
+     metadata:
+        name: antiaffinity-frontend
+        labels:
+           app: antiaffinity-frontend
+     spec:
+       containers:
+       - image: busybox
+         command: ["sleep","999999"]
+         name: test
+       affinity:
+         podAntiAffinity:
+           requiredDuringSchedulingIgnoredDuringExecution:
+           - topologyKey: kubernetes.io/hostname
+             labelSelector:
+                 matchLabels:
+                    app: antiaffinity-frontend

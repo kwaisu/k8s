@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+   name: busybox-frontend
+spec:
+   replicas: 10
+   template:
+     metadata:
+        name: busybox-frontend
+        labels:
+           app: busybox-frontend
+     spec:
+       containers:
+       - image: busybox
+         command: ["sleep","999999"]
+         name: main
+       affinity:
+         podAffinity:
+           preferredDuringSchedulingIgnoredDuringExecution:
+           - weight: 80
+             podAffinityTerm:
+                topologyKey: kubernetes.io/hostname
+                labelSelector:
+                  matchLabels:
+                     app: backend

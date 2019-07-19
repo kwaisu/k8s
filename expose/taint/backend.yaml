@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+   name: busybox-backend
+spec:
+   replicas: 1
+   template:
+     metadata:
+        name: busybox-backend
+        labels:
+           app: backend
+     spec:
+       containers:
+       - image: busybox
+         command: ["sleep","999999"]
+         name: test
+      

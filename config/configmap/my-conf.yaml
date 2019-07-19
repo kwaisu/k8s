@@ -1,0 +1,19 @@
+apiVersion: v1
+data:
+  debug: |
+    debug
+  foo.json: |
+    {
+      foo1: foo1
+      foo2: foo2
+    }
+  foobar.conf: |
+    foobar
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2019-06-12T05:20:43Z"
+  name: my-conf
+  namespace: default
+  resourceVersion: "323402"
+  selfLink: /api/v1/namespaces/default/configmaps/my-conf
+  uid: d39c2b5f-8cd1-11e9-8483-001c4284a633

@@ -1,0 +1,32 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+   name: kubia-stateful
+spec:
+  serviceName: kubia-stateful
+  replicas: 1
+  template:
+     metadata:
+        labels:
+          app: kubia-stateful
+     spec:
+        containers:
+        - name: kubia-stateful
+          image: luksa/kubia-pet
+          ports:
+          - name: http
+            containerPort: 8080
+          volumeMounts:
+          - name: data
+            mountPath: /var/data
+  volumeClaimTemplates:
+  - metadata:
+       name: data
+       annotations:
+         volume.beta.kubernetes.io/storage-class: "nfs"
+    spec:
+       accessModes:
+       - ReadWriteOnce
+       resources:
+         requests:
+           storage: 1Mi

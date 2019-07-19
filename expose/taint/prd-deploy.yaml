@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+   name: prod
+spec:
+   replicas: 5
+   template:
+     metadata:
+        name: kubia-test
+        labels:
+           app: kubia-deployment-test
+     spec:
+       containers:
+       - image: busybox
+         command: ["sleep","999999"]
+         name: test
+       tolerations:
+       - key: node-type
+         operator: Equal
+         value: production
+         effect: NoSchedule

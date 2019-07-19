@@ -1,0 +1,13 @@
+apiVersion: v1
+data:
+  customkey: |
+    interval=12
+    a=b
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2019-06-12T05:00:20Z"
+  name: test-config-2
+  namespace: default
+  resourceVersion: "321464"
+  selfLink: /api/v1/namespaces/default/configmaps/test-config-2
+  uid: fa739c55-8cce-11e9-8483-001c4284a633

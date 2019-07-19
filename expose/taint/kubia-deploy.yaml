@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+   name: prod
+spec:
+   replicas: 2
+   template:
+     metadata:
+        name: kubia-test
+        labels:
+           app: kubia-deployment-test
+     spec:
+       containers:
+       - image: busybox
+         command: ["sleep","999999"]
+         name: test
+       affinity:
+         nodeAffinity:
+           requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: node
+                  operator: In
+                  values:
+                  - "work-1"

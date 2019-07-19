@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fortune2s
+spec:
+  containers:
+    - image: clavin/fortune:arg
+      args: ["2"]
+      name: html-generator
+  nodeSelector:
+     node: work-1
